@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Viewer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="info">
+        <img src="./icon.png">
+        <p>Select a video and/or audio source</p>
+    </div>
+    <video id="video" playsinline autoplay></video>
+
+    <div id="config">
+        <img src="volume-icon.svg">
+        <input type="range" name="volume" id="volume" min="0" max="100" step="1" value="100">
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

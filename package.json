@@ -1,0 +1,39 @@
+{
+  "name": "video-viewer",
+  "version": "1.0.0",
+  "description": "A video input devices viewer made with Electron",
+  "main": "src/main/main.js",
+  "scripts": {
+    "start": "electron ./src/main/main.js",
+    "build": "electron-builder"
+  },
+  "keywords": [],
+  "author": {
+    "email": "rbfraphael@gmail.com",
+    "name": "RBFraphael",
+    "url": "https://rbfraphael.github.io"
+  },
+  "homepage": "https://rbfraphael.github.io",
+  "license": "ISC",
+ 
+  "devDependencies": {
+    "electron": "^27.0.3",
+    "electron-builder": "^24.6.4"
+  },
+  "build": {
+    "appId": "io.github.rbfraphael.video-viewer",
+    "linux": {
+      "target": ["AppImage","deb"],
+      "maintainer": "RBFraphael",
+      "description": "A video input devices viewer made with Electron",
+      "category": "AudioVideo;Audio;Video;Utility",
+      "icon": "./build/icon.icns",
+      "desktop": {
+        "Name": "Video Viewer",
+        "Comment": "A video input devices viewer made with Electron",
+        "Keywords": "video;viewer;easycap;usb capture;capture;",
+        "Terminal": false
+      }
+    }
+  }
+}
