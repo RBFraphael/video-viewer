@@ -34,6 +34,10 @@
         "Keywords": "video;viewer;easycap;usb capture;capture;",
         "Terminal": false
       }
+    },
+    "win": {
+        "target": ["nsis", "portable", "zip"],
+        "publisherName": "RBFraphael"
     }
   }
 }

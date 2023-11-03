@@ -37,6 +37,10 @@ div#info img {
     height: 4rem;
 }
 
+div#info p {
+    text-align: center;
+}
+
 div#config {
     position: fixed;
     bottom: .5rem;
@@ -60,9 +64,10 @@ div#config:hover {
 }
 
 div#config img {
-    flex-basis: 1rem;
+    flex: 0 1 16px;
+    width: 16px;
 }
 
 div#config input {
-    flex: 1;
+    flex: 1 1;
 }
