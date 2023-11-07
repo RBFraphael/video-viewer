@@ -14,6 +14,7 @@ It works very well also with some HDMI to USB devices, tested with a generic one
 - Support stereo 2-channel audio input
 - Fullscreen toggling in F11 key (or in Video > Toggle Fullscreen menu)
 - Integrated volume control (shows when you move your mouse to the bottom of the window)
+- Support for PIP (Picture In Picture)
 - Multiplatform support (Windows and Linux, and macOS builds are welcome too)
 - Simple for developers (it uses web technologies with Electron)
 

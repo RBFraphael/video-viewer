@@ -44,6 +44,12 @@ pipToggle.addEventListener("click", (e) => {
 mutedToggle.addEventListener("click", (e) => {
     video.muted = !video.muted;
     volume.disabled = video.muted;
+
+    if(video.muted){
+        document.getElementById("volume-icon").src = "muted-icon.svg";
+    } else {
+        document.getElementById("volume-icon").src = "volume-icon.svg";
+    }
 });
 
 function loadStream()

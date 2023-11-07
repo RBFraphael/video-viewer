@@ -63,11 +63,24 @@ div#config:hover {
     opacity: .85;
 }
 
-div#config img {
-    flex: 0 1 16px;
-    width: 16px;
+div#config button {
+    flex: 0 1 24px;
+    width: 24px;
 }
 
 div#config input {
     flex: 1 1;
+}
+
+button.action-button {
+    background: rgba(0, 0, 0, 0);
+    border: none;
+    padding: 4px;
+    border-radius: 4px;
+    outline: none;
+}
+
+button.action-button:hover {
+    background: rgba(0, 0, 0, 0.25);
+    cursor: pointer;
 }

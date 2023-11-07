@@ -14,9 +14,13 @@
     <video id="video" playsinline autoplay></video>
 
     <div id="config">
-        <img src="volume-icon.svg" id="toggle-muted">
+        <button class="action-button" id="toggle-muted">
+            <img src="volume-icon.svg" id="volume-icon">
+        </button>
         <input type="range" name="volume" id="volume" min="0" max="100" step="1" value="100">
-        <img src="pip-icon.svg" id="toggle-pip">
+        <button class="action-button" id="toggle-pip">
+            <img src="pip-icon.svg" id="pip-icon">
+        </button>
     </div>
 
     <script src="script.js"></script>
