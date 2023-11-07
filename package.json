@@ -38,6 +38,10 @@
     "win": {
         "target": ["nsis", "portable", "zip"],
         "publisherName": "RBFraphael"
+    },
+    "mac": {
+        "category": "public.app-category.video",
+        "target": ["default", "dmg"]
     }
   }
 }
