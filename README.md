@@ -1,5 +1,5 @@
 # Video Viewer
-### Your solution for viewing EasyCap and any other video capture devices on your PC
+### Your solution for viewing EasyCap, HDMI Video Capture and any other video devices on your PC
 ![Video Viewer Preview](preview.jpg)
 
 This project has born from a personal need to use with EasyCap, for playing my SNES within my desktop without dropping from my OS connecting it directly to my monitor with some SNES to HDMI adapter. Now I can just open a program, turn on my SNES and play any game while watching a movie, a video or just during my working time (please don't do this).
