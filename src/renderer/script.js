@@ -1,5 +1,9 @@
 let video = document.getElementById("video");
 let volume = document.getElementById("volume");
+
+let pipToggle = document.getElementById("toggle-pip");
+let mutedToggle = document.getElementById("toggle-muted");
+
 let videoDeviceId = null;
 let audioDeviceId = null;
 
@@ -31,6 +35,15 @@ navigator.mediaDevices.enumerateDevices().then((devices) => {
 volume.addEventListener("input", (e) => {
     let value = e.target.value;
     video.volume = value / 100;
+});
+
+pipToggle.addEventListener("click", (e) => {
+    video.requestPictureInPicture();
+});
+
+mutedToggle.addEventListener("click", (e) => {
+    video.muted = !video.muted;
+    volume.disabled = video.muted;
 });
 
 function loadStream()
