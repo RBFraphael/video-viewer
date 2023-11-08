@@ -15,33 +15,8 @@
   },
   "homepage": "https://rbfraphael.github.io",
   "license": "ISC",
- 
   "devDependencies": {
     "electron": "^27.0.3",
     "electron-builder": "^24.6.4"
-  },
-  "build": {
-    "appId": "io.github.rbfraphael.video-viewer",
-    "linux": {
-      "target": ["AppImage","deb"],
-      "maintainer": "RBFraphael",
-      "description": "A video input devices viewer made with Electron",
-      "category": "AudioVideo;Audio;Video;Utility",
-      "icon": "./build/icon.icns",
-      "desktop": {
-        "Name": "Video Viewer",
-        "Comment": "A video input devices viewer made with Electron",
-        "Keywords": "video;viewer;easycap;usb capture;capture;",
-        "Terminal": false
-      }
-    },
-    "win": {
-        "target": ["nsis", "portable", "zip"],
-        "publisherName": "RBFraphael"
-    },
-    "mac": {
-        "category": "public.app-category.video",
-        "target": ["default", "dmg"]
-    }
   }
 }
