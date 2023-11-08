@@ -52,6 +52,12 @@ mutedToggle.addEventListener("click", (e) => {
     }
 });
 
+window.addEventListener("keydown", (e) => {
+    if(e.key == "Escape"){
+        window.electronApi.exitFullscreen();
+    }
+});
+
 function loadStream()
 {
     if(window.stream){
@@ -93,4 +99,9 @@ function loadStream()
         window.stream = stream;
         video.srcObject = stream;
     });
+
+    document.querySelector("div#config").classList.add("visible");
+    setTimeout(() => {
+        document.querySelector("div#config").classList.remove("visible");
+    }, 3000)
 }

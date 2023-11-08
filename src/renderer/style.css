@@ -59,7 +59,8 @@ div#config {
     gap: .5rem;
 }
 
-div#config:hover {
+div#config:hover,
+div#config.visible {
     opacity: .85;
 }
 

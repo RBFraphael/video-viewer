@@ -44,6 +44,12 @@ app.on("ready", () => {
         currentVideoDevice = deviceId;
         buildMenu();
     });
+
+    ipcMain.on("exit-fullscreen", (event) => {
+        if(appWindow.isFullScreen()){
+            appWindow.setFullScreen(false);
+        }
+    });
 });
 
 app.on("window-all-closed", () => {

@@ -15,5 +15,8 @@ contextBridge.exposeInMainWorld('electronApi', {
     },
     devicesLoaded: (devices) => {
         ipcRenderer.send("devices-loaded", devices);
+    },
+    exitFullscreen: () => {
+        ipcRenderer.send("exit-fullscreen");
     }
 });
