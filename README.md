@@ -20,4 +20,4 @@ It works very well also with some HDMI to USB devices, tested with a generic one
 
 ## Download
 
-You can [download the latest build](https://github.com/rbfraphael/video-viewer/releases/latest) for Windows (portable, zipped and installer) and Linux (deb and AppImage) from the releases page. If you're on macOS and want to give it a try, you can compile it yourself just running ```npm install```, to install dependencies, then ```npm run build``` (remember you must have NodeJS installed on your machine). It should build a usable version for macOS at the **dist** folder.
+You can [download the latest build](https://github.com/rbfraphael/video-viewer/releases/latest) for Windows (portable, zipped and installer), Linux (deb, AppImage and Flatpak) and macOS (dmg and zipped) from the releases page.
