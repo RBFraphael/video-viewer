@@ -1,5 +1,10 @@
-const { app, BrowserWindow, ipcMain, Menu, ipcRenderer } = require("electron");
+const { app, BrowserWindow, ipcMain, Menu, ipcRenderer, systemPreferences } = require("electron");
 const path = require("path");
+
+if(process.platform == "darwin"){
+    const microphone = systemPreferences.askForMediaAccess("microphone");
+    const camera = systemPreferences.askForMediaAccess("camera");
+}
 
 var appWindow;
 var videoDevices = [];
@@ -100,6 +105,22 @@ function buildMenu(){
             ]
         }
     ];
+
+    if(process.platform == "darwin"){
+        menuTemplate = [
+            {
+                label: "Video Viewer",
+                submenu: [
+                    {
+                        label: "Quit",
+                        accelerator: "Cmd+Q",
+                        click: () => app.quit()
+                    }
+                ]
+            },
+            ...menuTemplate
+        ]
+    }
 
     Menu.setApplicationMenu(Menu.buildFromTemplate(menuTemplate));
 }

@@ -1,4 +1,5 @@
 appId: "io.github.rbfraphael.video-viewer"
+productName: "Video Viewer"
 linux: 
   target: ["AppImage","deb", "flatpak"]
   maintainer: "RBFraphael"
@@ -20,3 +21,9 @@ win:
 mac: 
   category: "public.app-category.video"
   target: ["default", "dmg"]
+  hardenedRuntime: false
+  extendInfo:
+    NSMicrophoneUsageDescription: "Microphone access is needed to play audio from input sources"
+    NSCameraUsageDescription: "Camera access is needed to play video from input sources"
+    com.apple.security.device.audio-input: true
+    com.apple.security.device.camera: true
