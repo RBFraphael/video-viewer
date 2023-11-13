@@ -7,6 +7,13 @@ let mutedToggle = document.getElementById("toggle-muted");
 let videoDeviceId = null;
 let audioDeviceId = null;
 
+let width = 1920;
+let height = 1080;
+
+var mouseIsHidden = false;
+var mouseTimeout;
+var mouseHideSet = false;
+
 navigator.mediaDevices.enumerateDevices().then((devices) => {
     let data = devices.map((device, index) => {
         if(device.kind == "audioinput" && audioDeviceId == null){ audioDeviceId = device.deviceId; }
@@ -21,13 +28,19 @@ navigator.mediaDevices.enumerateDevices().then((devices) => {
 
     window.electronApi.devicesLoaded(data);
     
-    window.electronApi.setAudioSource((event, deviceId) => {
+    window.electronApi.onSetAudioSource((event, deviceId) => {
         audioDeviceId = deviceId;
         loadStream();
     });
 
-    window.electronApi.setVideoSource((event, deviceId) => {
+    window.electronApi.onSetVideoSource((event, deviceId) => {
         videoDeviceId = deviceId;
+        loadStream();
+    });
+
+    window.electronApi.onSetResolutuion((event, _width, _height) => {
+        width = _width;
+        height = _height;
         loadStream();
     });
 });
@@ -58,8 +71,34 @@ window.addEventListener("keydown", (e) => {
     }
 });
 
+window.addEventListener("click", (e) => {
+    if(e.detail == 2){
+        window.electronApi.toggleFullscreen();
+    }
+});
+
 function loadStream()
 {
+    if(!mouseHideSet){
+        window.addEventListener("mousemove", (e) => {
+            if(mouseTimeout){ clearTimeout(mouseTimeout); }
+
+            mouseTimeout = setTimeout(() => {
+                if(!mouseIsHidden){
+                    document.body.style.cursor = "none";
+                    mouseIsHidden = true;
+                }
+            }, 3000);
+
+            if(mouseIsHidden){
+                document.body.style.cursor = "auto";
+                mouseIsHidden = false;
+            }
+        });
+
+        mouseHideSet = true;
+    }
+
     if(window.stream){
         window.stream.getTracks().forEach(track => {
           track.stop();
@@ -76,8 +115,8 @@ function loadStream()
         },
         video: {
             deviceId: videoDeviceId ? { exact: videoDeviceId } : undefined,
-            width: { ideal: 1920 },
-            height: { ideal: 1080 },
+            width: { ideal: width },
+            height: { ideal: height },
             frameRate: { ideal: 60 }
         }
     };

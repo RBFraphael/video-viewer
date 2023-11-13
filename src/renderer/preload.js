@@ -1,11 +1,14 @@
 const { contextBridge, ipcRenderer } = require("electron");
 
 contextBridge.exposeInMainWorld('electronApi', {
-    setAudioSource: (cb) => {
+    onSetAudioSource: (cb) => {
         ipcRenderer.on("set-audio-source", cb);
     },
-    setVideoSource: (cb) => {
+    onSetVideoSource: (cb) => {
         ipcRenderer.on("set-video-source", cb);
+    },
+    onSetResolutuion: (cb) => {
+        ipcRenderer.on("set-resolution", cb);
     },
     setAudioSourceId: (deviceId) => {
         ipcRenderer.send("set-audio-device-id", deviceId);
@@ -18,5 +21,8 @@ contextBridge.exposeInMainWorld('electronApi', {
     },
     exitFullscreen: () => {
         ipcRenderer.send("exit-fullscreen");
+    },
+    toggleFullscreen: () => {
+        ipcRenderer.send("toggle-fullscreen");
     }
 });
