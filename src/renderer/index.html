@@ -8,21 +8,26 @@
 </head>
 <body>
     <div id="info">
-        <img src="./icon.png">
+        <img src="./resources/icon.png">
         <p>Select a video and/or audio source</p>
     </div>
     <video id="video" playsinline autoplay></video>
 
     <div id="config">
         <button class="action-button" id="toggle-muted">
-            <img src="volume-icon.svg" id="volume-icon">
+            <img src="./resources/volume-icon.svg" id="volume-icon">
         </button>
-        <input type="range" name="volume" id="volume" min="0" max="100" step="1" value="100">
+        <div id="volume-slider">
+            <input type="range" name="volume" id="volume" min="0" max="100" step="1" value="100">
+        </div>
         <button class="action-button" id="toggle-pip">
-            <img src="pip-icon.svg" id="pip-icon">
+            <img src="./resources/pip-icon.svg" id="pip-icon">
         </button>
     </div>
 
-    <script src="script.js"></script>
+    <script src="./scripts/params.js"></script>
+    <script src="./scripts/events.js"></script>
+    <script src="./scripts/stream.js"></script>
+    <script src="./scripts/ui.js"></script>
 </body>
 </html>

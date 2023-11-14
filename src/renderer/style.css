@@ -44,14 +44,15 @@ div#info p {
 div#config {
     position: fixed;
     bottom: .5rem;
-    left: 15%;
-    right: 15%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70%;
+    max-width: 600px;
     opacity: 0;
     transition: opacity 0.15s ease-in-out;
     padding: 0.5rem;
-    border: solid 1px #95a5a6;
-    border-radius: 1rem;
-    background-color: #34495e;
+    border-radius: .5rem;
+    background: linear-gradient(to top, #4F68F3 0%, #6A3DE8 100%);
     z-index: 15;
     display: flex;
     flex-direction: row;
@@ -69,8 +70,47 @@ div#config button {
     width: 24px;
 }
 
-div#config input {
+div#config #volume-slider {
+    position: relative;
     flex: 1 1;
+}
+
+div#config #volume-slider::before {
+    content: '';
+    position: absolute;
+    top: .5rem;
+    left: 0;
+    bottom: .5rem;
+    right: 0;
+    background-image: url("./resources/volume-bar.svg");
+    background-size: 100% 100%;
+    background-position: center;
+    pointer-events: none;
+}
+
+div#config input[type="range"] {
+    position: relative;
+    -webkit-appearance: none;
+    appearance: none;
+    background: transparent;
+    cursor: pointer;
+    transition: opacity 0.15s ease-in-out;
+    z-index: 5;
+    width: 100%;
+}
+
+div#config input[type="range"]:disabled {
+    opacity: .5;
+}
+
+div#config input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: .5rem;
+    height: 2rem;
+    background: #95a5a6;
+    border-radius: .25rem;
+    z-index: 1;
 }
 
 button.action-button {
@@ -79,6 +119,7 @@ button.action-button {
     padding: 4px;
     border-radius: 4px;
     outline: none;
+    transition: background 0.15s ease-in-out;
 }
 
 button.action-button:hover {
