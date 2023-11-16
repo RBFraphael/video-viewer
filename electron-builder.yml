@@ -20,10 +20,23 @@ win:
   publisherName: "RBFraphael"
 mac: 
   category: "public.app-category.video"
-  target: ["default", "dmg"]
+  target: ["dmg", "zip"]
   hardenedRuntime: false
   extendInfo:
     NSMicrophoneUsageDescription: "Microphone access is needed to play audio from input sources"
     NSCameraUsageDescription: "Camera access is needed to play video from input sources"
     com.apple.security.device.audio-input: true
     com.apple.security.device.camera: true
+dmg:
+  background: "build/background.png"
+  iconSize: 100
+  window:
+    width: 480
+    height: 533
+  contents:
+    - x: 240
+      y: 120
+    - x: 240
+      y: 390
+      type: "link"
+      path: "/Applications"
