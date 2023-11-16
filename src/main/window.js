@@ -1,4 +1,4 @@
-const { BrowserWindow, Menu } = require("electron");
+const { app, BrowserWindow, Menu } = require("electron");
 const path = require("path");
 
 var appWindow = null;
@@ -18,7 +18,9 @@ const createWindow = (callback) => {
             callback(appWindow);
         });
 
-        appWindow.webContents.openDevTools();
+        if(!app.isPackaged){
+            appWindow.webContents.openDevTools();
+        }
     }
 
     Menu.setApplicationMenu(
