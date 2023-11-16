@@ -1,7 +1,9 @@
+const { app } = require("electron");
 const path = require("path");
 const fs = require("fs");
 
-const file = path.join(__dirname, "video-viewer.json");
+const dataDir = app.getPath("userData");
+const file = path.join(dataDir, "user.json");
 const data = {};
 
 const loadFile = () => {
