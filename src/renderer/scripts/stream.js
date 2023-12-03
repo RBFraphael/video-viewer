@@ -42,3 +42,42 @@ window.loadStream = () => {
         console.error(err);
     });
 };
+
+window.startRecording = () => {
+    window.recordedBlobs = [];
+    let mimeType = "video/x-matroska;codecs=avc1,opus";
+
+    if(MediaRecorder.isTypeSupported(mimeType)){
+        window.mediaRecorder = new MediaRecorder(
+            window.stream, {mimeType}
+        );
+
+        window.mediaRecorder.addEventListener("dataavailable", (event) => {
+            if(event.data && event.data.size > 0){
+                window.recordedBlobs.push(event.data);
+            }
+        });
+
+        window.mediaRecorder.addEventListener("stop", (event) => {
+            var blob = new Blob(
+                window.recordedBlobs, 
+                { type: window.recordedBlobs[0].type }
+            );
+            
+            var reader = new FileReader();
+            reader.onload = () => {
+                let b64Data = reader.result;
+                window.ipc.send("save-recording", b64Data);
+            };
+            reader.readAsDataURL(blob);
+        });
+
+        window.mediaRecorder.start();
+    } else {
+        alert("Recording not supported");
+    }
+};
+
+window.stopRecording = () => {
+    window.mediaRecorder.stop();
+};

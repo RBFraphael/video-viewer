@@ -2,6 +2,8 @@ const { Menu } = require("electron");
 const { resolutions } = require("./constants");
 const { storage } = require("./storage");
 
+var recording = false;
+
 const buildMenu = (appWindow, devices = []) => {
     let savedVideoSource = storage.getItem("saved-video-source");
     let savedResolutionIndex = storage.getItem("saved-resolution-index");
@@ -59,7 +61,25 @@ const buildMenu = (appWindow, devices = []) => {
                     label: "Toggle Fullscreen",
                     accelerator: "F11",
                     click: () => appWindow.setFullScreen(!appWindow.isFullScreen())
-                }
+                },
+                {
+                    label: "Start recording",
+                    click: () => {
+                        recording = true;
+                        appWindow.webContents.send("start-recording");
+                        buildMenu(appWindow, devices);
+                    },
+                    visible: (savedVideoSource !== null && !recording)
+                },
+                {
+                    label: "Stop recording",
+                    click: () => {
+                        recording = false;
+                        appWindow.webContents.send("stop-recording");
+                        buildMenu(appWindow, devices);
+                    },
+                    visible: (savedVideoSource !== null && recording)
+                },
             ]
         },
         {

@@ -18,7 +18,7 @@ const createWindow = (callback) => {
             callback(appWindow);
         });
 
-        if(!app.isPackaged){
+        if(!app.isPackaged || process.argv.includes("--inspect")){
             appWindow.webContents.openDevTools();
         }
     }

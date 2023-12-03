@@ -2,6 +2,7 @@ const { app, ipcMain, systemPreferences } = require("electron");
 const { createWindow } = require("./window");
 const { buildMenu } = require("./menu");
 const { loadDefaults } = require("./defaults");
+const { saveRecording } = require("./recording");
 
 if(process.platform == "darwin"){
     const microphone = systemPreferences.askForMediaAccess("microphone");
@@ -36,5 +37,9 @@ const setEvents = (appWindow) => {
         if(appWindow.isFullScreen()){
             appWindow.setFullScreen(false);
         }
+    });
+
+    ipcMain.on("save-recording", (e, base64 = "") => {
+        saveRecording(appWindow, base64);
     });
 };

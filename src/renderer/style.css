@@ -126,3 +126,47 @@ button.action-button:hover {
     background: rgba(0, 0, 0, 0.25);
     cursor: pointer;
 }
+
+#recording {
+    width: 32px;
+    height: 32px;
+    background-color: #c0392b;
+    border-radius: 50%;
+    position: fixed;
+    right: 16px;
+    top: 16px;
+    opacity: 0;
+    z-index: 15;
+}
+
+#recording.rec {
+    animation: rec 2s infinite ease-in-out;
+}
+
+@keyframes rec {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+#recording-status {
+    display: none;
+    color: #FFF;
+    font-size: 2rem;
+    font-weight: bold;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    position: fixed;
+    right: 16px;
+    top: 16px;
+    z-index: 15;
+}
+
+#recording-status.show {
+    display: block;
+}

@@ -45,3 +45,26 @@ window.videoElement.addEventListener("click", (e) => {
         window.ipc.send("toggle-fullscreen");
     }
 });
+
+window.ipc.on("start-recording", (e) => {
+    window.recordingElement.classList.add("rec");
+    window.startRecording();
+});
+
+window.ipc.on("stop-recording", (e) => {
+    window.recordingElement.classList.remove("rec");
+    window.stopRecording();
+});
+
+window.ipc.on("saving-recorded-file", (e, path) => {
+    window.recordingStatusElement.textContent = "Saving file...";
+    window.recordingStatusElement.classList.add("show");
+});
+
+window.ipc.on("recorded-file-saved", (e, path) => {
+    window.recordingStatusElement.textContent = "File saved!";
+    setTimeout(() => {
+        window.recordingStatusElement.textContent = "";
+        window.recordingStatusElement.classList.remove("show");
+    }, 3500);
+});
