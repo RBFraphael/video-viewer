@@ -19,8 +19,5 @@
   "devDependencies": {
     "electron": "^27.0.3",
     "electron-builder": "^24.6.4"
-  },
-  "dependencies": {
-    "webm-to-mp4": "^1.0.0"
   }
 }

@@ -32,6 +32,10 @@ div#info {
     align-items: center;
 }
 
+div#info.hide {
+    display: none;
+}
+
 div#info img {
     width: 4rem;
     height: 4rem;
@@ -128,45 +132,90 @@ button.action-button:hover {
 }
 
 #recording {
-    width: 32px;
-    height: 32px;
-    background-color: #c0392b;
-    border-radius: 50%;
     position: fixed;
     right: 16px;
     top: 16px;
-    opacity: 0;
+    display: none;
     z-index: 15;
+    border-radius: 1rem;
+    padding: .5rem 1rem;
+    background: rgba(0, 0, 0, 0.5);
+    pointer-events: none;
+    text-align: right;
 }
 
 #recording.rec {
-    animation: rec 2s infinite ease-in-out;
+    display: block;
 }
 
-@keyframes rec {
-    0% {
-        opacity: 0;
-    }
-    50% {
-        opacity: 1;
-    }
-    100% {
-        opacity: 0;
-    }
+#recording #rec-time {
+    color: #FFF;
+    font-size: 1rem;
+    font-weight: bold;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin-right: .2rem;
+}
+
+#recording #rec-icon {
+    display: inline-block;
+    width: 1.2rem;
+    height: 1.2rem;
+    background-color: #c0392b;
+    border-radius: 50%;
+    opacity: 0;
+    animation: rec 2s infinite ease-in-out;
+    vertical-align: text-bottom;
 }
 
 #recording-status {
     display: none;
-    color: #FFF;
-    font-size: 2rem;
-    font-weight: bold;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     position: fixed;
     right: 16px;
     top: 16px;
     z-index: 15;
+    border-radius: 1rem;
+    padding: .5rem 1rem;
+    background: rgba(0, 0, 0, 0.5);
+    pointer-events: none;
+}
+
+#recording-status p#status {
+    color: #FFF;
+    font-size: 1rem;
+    font-weight: bold;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#recording-status p#encoding {
+    color: #FFF;
+    font-size: .65rem;
+    font-weight: normal;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#recording-status p#status span.loading {
+    width: 1rem;
+    height: 1rem;
+    border-top: solid 4px white;
+    border-left: solid 4px white;
+    border-bottom: solid 4px rgba(0, 0, 0, 0);
+    border-right: solid 4px rgba(0, 0, 0, 0);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    display: inline-block;
 }
 
 #recording-status.show {
     display: block;
+}
+
+@keyframes rec {
+    0% { opacity: 0; }
+    50% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }

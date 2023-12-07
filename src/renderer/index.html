@@ -12,8 +12,17 @@
         <p>Select a video and/or audio source</p>
     </div>
     <video id="video" playsinline autoplay></video>
-    <div id="recording"></div>
-    <div id="recording-status"></div>
+
+    <div id="recording">
+        <span id="rec-time"></span>
+        <span id="rec-icon"></span>
+    </div>
+
+    <div id="recording-status">
+        <p id="status"></p>
+        <p id="encoding"></p>
+    </div>
+
     <div id="config">
         <button class="action-button" id="toggle-muted">
             <img src="./resources/volume-icon.svg" id="volume-icon">

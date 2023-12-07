@@ -49,22 +49,48 @@ window.videoElement.addEventListener("click", (e) => {
 window.ipc.on("start-recording", (e) => {
     window.recordingElement.classList.add("rec");
     window.startRecording();
+
+    window.recordingStart = (new Date()).getTime();
+    if(window.recordingInterval){ clearInterval(window.recordingInterval); }
+    window.recordingTimerElement.textContent = "00:00";
+
+    window.recordingInterval = setInterval(() => {
+        let timer = (new Date()).getTime() - window.recordingStart;
+        timer = timer / 1000;
+
+        let minutes = Math.floor(timer / 60);
+        let seconds = timer - (minutes * 60);
+        
+        let timeString = `${("0"+minutes).slice(-2)}:${("0"+seconds).slice(-2)}`;
+        
+        window.recordingTimerElement.textContent = timeString;
+    }, 1000);
 });
 
 window.ipc.on("stop-recording", (e) => {
     window.recordingElement.classList.remove("rec");
     window.stopRecording();
+
+    if(window.recordingInterval){ clearInterval(window.recordingInterval); }
+    window.recordingInterval = null;
+    window.recordingTimerElement.textContent = "";
 });
 
 window.ipc.on("saving-recorded-file", (e, path) => {
-    window.recordingStatusElement.textContent = "Saving file...";
     window.recordingStatusElement.classList.add("show");
+    window.recordingStatusElement.querySelector("p#status").innerHTML = `Saving video file <span class="loading"></span>`;
+});
+
+window.ipc.on("encoding-status", (e, data) => {
+    window.recordingStatusElement.querySelector("p#encoding").textContent = `Encoding ${data.time}@${data.speed}...`;
 });
 
 window.ipc.on("recorded-file-saved", (e, path) => {
-    window.recordingStatusElement.textContent = "File saved!";
+    window.recordingStatusElement.querySelector("p#status").innerHTML = `File saved <img src="./resources/check-icon.svg">`;
+    window.recordingStatusElement.querySelector("p#encoding").textContent = "";
+
     setTimeout(() => {
-        window.recordingStatusElement.textContent = "";
+        window.recordingStatusElement.querySelector("p").innerHTML = "";
         window.recordingStatusElement.classList.remove("show");
     }, 3500);
 });

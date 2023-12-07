@@ -38,6 +38,10 @@ window.loadStream = () => {
     navigator.mediaDevices.getUserMedia(constraints).then((stream) => {
         window.stream = stream;
         window.videoElement.srcObject = stream;
+
+        if(window.videoSource){
+            window.infoElement.classList.add("hide");
+        }
     }).catch((err) => {
         console.error(err);
     });
