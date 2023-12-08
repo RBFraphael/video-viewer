@@ -80,7 +80,6 @@ const saveRecording = (appWindow, base64 = "") => {
                     ffmpegWorker.on("message", (e) => {
                         switch(e.type){
                             case "ready":
-                                console.log("[M] ready");
                                 ffmpegWorker.postMessage({
                                     type: "run",
                                     arguments: `-i data/input.webm -preset ultrafast -y data/output.mp4`.split(" "),

@@ -50,16 +50,15 @@ window.ipc.on("start-recording", (e) => {
     window.recordingElement.classList.add("rec");
     window.startRecording();
 
-    window.recordingStart = (new Date()).getTime();
+    window.recordingStart = 0;
     if(window.recordingInterval){ clearInterval(window.recordingInterval); }
     window.recordingTimerElement.textContent = "00:00";
 
     window.recordingInterval = setInterval(() => {
-        let timer = (new Date()).getTime() - window.recordingStart;
-        timer = timer / 1000;
+        window.recordingStart++;
 
-        let minutes = Math.floor(timer / 60);
-        let seconds = timer - (minutes * 60);
+        let minutes = Math.floor(window.recordingStart / 60);
+        let seconds = window.recordingStart - (minutes * 60);
         
         let timeString = `${("0"+minutes).slice(-2)}:${("0"+seconds).slice(-2)}`;
         
@@ -73,6 +72,7 @@ window.ipc.on("stop-recording", (e) => {
 
     if(window.recordingInterval){ clearInterval(window.recordingInterval); }
     window.recordingInterval = null;
+    window.recordingStart = 0;
     window.recordingTimerElement.textContent = "";
 });
 
