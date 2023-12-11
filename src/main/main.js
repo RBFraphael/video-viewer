@@ -42,4 +42,12 @@ const setEvents = (appWindow) => {
     ipcMain.on("save-recording", (e, base64 = "") => {
         saveRecording(appWindow, base64);
     });
+
+    ipcMain.on("focus", (e) => {
+        console.log("FOCUS");
+        if(appWindow.isMinimized()){
+            appWindow.restore();
+        }
+        appWindow.focus();
+    });
 };

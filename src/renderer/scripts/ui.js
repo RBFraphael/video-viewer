@@ -15,6 +15,10 @@ window.pipToggleElement.addEventListener("click", (e) => {
     window.videoElement.requestPictureInPicture();
 });
 
+window.videoElement.addEventListener("leavepictureinpicture", () => {
+    window.ipc.send("focus");
+});
+
 var mouseIsHidden = false;
 var mouseTimeout;
 var mouseHideSet = false;
