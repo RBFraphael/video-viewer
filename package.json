@@ -1,6 +1,6 @@
 {
   "name": "video-viewer",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "A video input devices viewer made with Electron",
   "main": "src/main/main.js",
   "scripts": {
