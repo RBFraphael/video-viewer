@@ -44,7 +44,6 @@ const setEvents = (appWindow) => {
     });
 
     ipcMain.on("focus", (e) => {
-        console.log("FOCUS");
         if(appWindow.isMinimized()){
             appWindow.restore();
         }
