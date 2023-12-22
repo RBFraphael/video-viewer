@@ -130,3 +130,4 @@ dist
 .pnp.*
 
 video-viewer.json
+config.json

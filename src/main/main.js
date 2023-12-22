@@ -3,6 +3,7 @@ const { createWindow } = require("./window");
 const { buildMenu } = require("./menu");
 const { loadDefaults } = require("./defaults");
 const { saveRecording } = require("./recording");
+const { checkForUpdates } = require("./update");
 
 if(process.platform == "darwin"){
     const microphone = systemPreferences.askForMediaAccess("microphone");
@@ -21,6 +22,7 @@ const boot = () => {
     createWindow((appWindow) => {
         setEvents(appWindow);
         loadDefaults(appWindow);
+        checkForUpdates(appWindow);
     });
 };
 
