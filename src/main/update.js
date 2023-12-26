@@ -3,7 +3,7 @@ const config = require("../../config.json");
 const package = require("../../package.json");
 const { dialog, shell } = require("electron");
 
-const checkForUpdates = (appWindow) => {
+const checkForUpdates = (appWindow, user = false) => {
     axios.get("https://api.github.com/repos/rbfraphael/video-viewer/releases/latest", {
         headers: {
             'Accept': "application/json",
@@ -28,6 +28,11 @@ const checkForUpdates = (appWindow) => {
                 if(res.response == 0){
                     shell.openExternal(latestRelease.html_url);
                 }
+            });
+        } else if(user){
+            dialog.showMessageBox(appWindow, {
+                title: "Update status",
+                message: "You have the latest available version."
             });
         }
     }).catch((err) => {

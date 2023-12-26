@@ -1,6 +1,8 @@
 const { Menu } = require("electron");
 const { resolutions } = require("./constants");
 const { storage } = require("./storage");
+const { version } = require("../../package.json");
+const { checkForUpdates } = require("./update");
 
 var recording = false;
 
@@ -13,6 +15,17 @@ const buildMenu = (appWindow, devices = []) => {
         {
             label: "Video Viewer",
             submenu: [
+                {
+                    label: `Video Viewer ${version}`,
+                    enabled: false
+                },
+                {
+                    label: `Check for updates`,
+                    click: () => checkForUpdates(appWindow, true)
+                },
+                {
+                    type: "separator"
+                },
                 {
                     label: "Clear Defaults",
                     click: () => storage.clear()
